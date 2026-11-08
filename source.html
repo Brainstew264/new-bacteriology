@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Original MLT 107 course PDFs for Units 6 and 7.">
+  <title>MLT 107 | Course Source PDFs</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Return to MLT 107 Bacteriology Explorer">
+      <span class="brand-mark">MLT</span>
+      <span class="brand-copy"><strong>MLT 107</strong><small>BACTERIOLOGY EXPLORER</small></span>
+    </a>
+    <div class="topbar-tools"><a class="source-link" href="index.html">← Back to Explorer</a></div>
+  </header>
+
+  <main class="source-main">
+    <div class="source-heading">
+      <div>
+        <div class="eyebrow-dark">Course source library</div>
+        <h1 id="sourceTitle">Original Unit 6 PDF</h1>
+        <p id="sourceDescription">Use the source document to check original wording, tables, figures, and printed page numbers.</p>
+      </div>
+      <div class="source-actions">
+        <a id="openPdf" class="source-action primary" href="unit-6-bacteriology-part-3.pdf" target="_blank" rel="noopener">Open in new tab ↗</a>
+        <a id="downloadPdf" class="source-action" href="unit-6-bacteriology-part-3.pdf" download>Download PDF ↓</a>
+      </div>
+    </div>
+
+    <nav class="source-document-tabs" aria-label="Choose original course PDF">
+      <a id="unit6Tab" href="source.html?unit=unit-6">Unit 6 · Bacteriology Part 3</a>
+      <a id="unit7Tab" href="source.html?unit=unit-7">Unit 7 · Anaerobes</a>
+    </nav>
+
+    <div class="source-viewer">
+      <iframe id="pdfViewer" src="unit-6-bacteriology-part-3.pdf#view=FitH" title="Original MLT 107 course PDF" loading="eager">
+        Your browser cannot display embedded PDFs. Use the Open in new tab or Download PDF links above.
+      </iframe>
+    </div>
+    <div id="pageNote" class="source-fallback">The source PDF is stored locally with this website. An internet connection is not required.</div>
+    <div class="source-fallback">PDF page references in the explorer use the printed page numbers in the course document. Some tables and identification algorithms are image-based; the original PDF is the authoritative place to inspect their full layout.</div>
+  </main>
+
+  <script>
+    (() => {
+      const documents = {
+        "unit-6": {
+          title: "Original Unit 6 PDF",
+          description: "Bacteriology Part 3 · printed pages 384–474",
+          file: "unit-6-bacteriology-part-3.pdf",
+          printedStart: 384
+        },
+        "unit-7": {
+          title: "Original Unit 7 PDF",
+          description: "Anaerobes · printed pages 475–528",
+          file: "unit-7-anaerobes.pdf",
+          printedStart: 475
+        }
+      };
+      const params = new URLSearchParams(window.location.search);
+      const id = documents[params.get("unit")] ? params.get("unit") : "unit-6";
+      const doc = documents[id];
+      const page = Math.max(1, Number.parseInt(params.get("page") || "1", 10) || 1);
+      const pdfUrl = `${doc.file}#page=${page}&view=FitH`;
+
+      document.title = `MLT 107 | ${doc.title}`;
+      document.getElementById("sourceTitle").textContent = doc.title;
+      document.getElementById("sourceDescription").textContent = doc.description;
+      document.getElementById("pdfViewer").src = pdfUrl;
+      document.getElementById("pdfViewer").title = doc.title;
+      document.getElementById("openPdf").href = pdfUrl;
+      document.getElementById("downloadPdf").href = doc.file;
+      document.getElementById("unit6Tab").classList.toggle("is-active", id === "unit-6");
+      document.getElementById("unit7Tab").classList.toggle("is-active", id === "unit-7");
+      document.getElementById("unit6Tab").setAttribute("aria-current", id === "unit-6" ? "page" : "false");
+      document.getElementById("unit7Tab").setAttribute("aria-current", id === "unit-7" ? "page" : "false");
+      const printedPage = page + doc.printedStart - 1;
+      document.getElementById("pageNote").textContent = params.has("page")
+        ? `Opened at PDF page ${page} (printed page ${printedPage}). The source document is stored locally with this website.`
+        : "The source PDF is stored locally with this website. An internet connection is not required.";
+    })();
+  </script>
+</body>
+</html>

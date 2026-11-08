@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An objective-driven MLT 107 bacteriology reference organized by taxonomy.">
+  <title>MLT 107 | Bacteriology Explorer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" data-home="true" aria-label="MLT 107 home">
+      <span class="brand-mark">MLT</span>
+      <span class="brand-copy"><strong>MLT 107</strong><small>BACTERIOLOGY EXPLORER</small></span>
+    </a>
+    <div class="topbar-tools">
+      <label class="search-wrap" for="searchInput">
+        <span class="search-icon" aria-hidden="true">⌕</span>
+        <input id="searchInput" type="search" placeholder="Search organisms, tests, objectives…" autocomplete="off">
+      </label>
+      <div id="searchResults" class="search-results" hidden></div>
+      <a class="source-link" href="source.html" aria-label="Open original course PDFs">Source PDFs <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <nav id="lessonTabs" class="lesson-tabs" aria-label="Course lessons"></nav>
+    <div class="breadcrumb" id="breadcrumb">MLT 107 <span>/</span> Unit 6 <span>/</span> Overview</div>
+    <section id="contentView" aria-live="polite"></section>
+    <footer class="page-footer">Course reference based on the provided Unit 6 and Unit 7 PDFs. Page references refer to the printed page numbers in the corresponding source document.</footer>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="unit-7-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
